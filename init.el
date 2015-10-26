@@ -35,7 +35,7 @@
 ;; Enable pallet-mode so that newly installed
 ;; packages are written to the Cask file
 (require 'pallet)
-(pallet-mode)
+(pallet-mode t)
 
 ;;; Like /etc/rc.d, all startup filenames begin with a number and get
 ;;; loaded in numerical order.
