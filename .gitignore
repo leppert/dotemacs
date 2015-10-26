@@ -1,0 +1,26 @@
+.places
+ac-comphist.dat
+auto-save-list
+backups
+elpa
+ido.last
+recentf
+project-persist
+.cask
+tramp
+.graphene-geometry
+url/cookies
+.mc-lists.el
+.DS_Store
+
+# Private env vars (API keys, etc)
+modules/00-private.el
+
+# Compiled elisp files
+*.elc
+
+# M-x command history
+smex-items
+
+# Stackoverflow package cache
+.sx
