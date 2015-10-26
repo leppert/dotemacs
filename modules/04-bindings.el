@@ -66,3 +66,6 @@
 
 ;; Bind silver searcher to super shift f
 (global-set-key (kbd "s-F") 'ag)
+
+;; Go ahead and kill the current buffer
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
