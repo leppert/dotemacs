@@ -69,3 +69,12 @@
 
 ;; Go ahead and kill the current buffer
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+;; Use swiper in place of isearch
+;; https://github.com/abo-abo/swiper#installation
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key "\C-r" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key [f6] 'ivy-resume)
