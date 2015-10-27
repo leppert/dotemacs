@@ -36,7 +36,7 @@
 
 ;; unblinking bar-style cursor
 (blink-cursor-mode 0)
-(setq cursor-type 'bar)
+(setq-default cursor-type 'bar)
 
 ;; fancy lambda, &c
 (global-prettify-symbols-mode 1)
