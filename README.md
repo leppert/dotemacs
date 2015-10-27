@@ -1,10 +1,13 @@
-## WHY?
+## WHAT?
 
-After the release of emacs 24.1, I took the time to jettison an
-enormous quantity of elisp that had accumulated in my dotfiles since
-1985. Most of the custom features implemented by that code now have
-analogues in the base emacs or in one of the many excellent packages
-available via the ELPA-compatible repositories.
+This is my rifle. There are many like it, but this one is mine. It
+is my life. I must master it as I must master my life. Without me my
+rifle is useless.
+
+This particular model of rifle has largely been cribbed from
+[Jack Rusher's](https://github.com/jackrusher/dotemacs). If you're
+looking to build your own rifle, I recommend using Jack's as a
+starting point.
 
 ## INSTALLATION
 
