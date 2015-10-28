@@ -49,7 +49,6 @@
 (depends-on "org-download")
 (depends-on "pallet")
 (depends-on "paradox")
-(depends-on "paredit")
 (depends-on "parenface-plus")
 (depends-on "php-mode")
 (depends-on "pkg-info")

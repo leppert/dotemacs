@@ -78,66 +78,11 @@ Including indent-buffer, which should not be called automatically on save."
 (global-set-key (kbd "<S-s-return>") 'eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "<S-s-return>") 'eval-last-sexp)
 
-;;; PAREDIT
+;;; SMARTPARENS
 
-;; paredit all the parens
-(dolist (mode '(scheme emacs-lisp lisp clojure clojurescript))
-    (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
-              'paredit-mode))
-
-;; adjust paredit's key bindings so they don't override my preferred
-;; navigation keys, add brace matching goodies across all modes
-(eval-after-load 'paredit
-  '(progn
-     ;; fights with my preferred navigation keys
-     (dolist (binding (list (kbd "M-<up>") (kbd "M-<down>") (kbd "C-M-<left>") (kbd "C-M-<right>")))
-       (define-key paredit-mode-map binding nil))
-
-     ;; not just in lisp mode(s) 
-     (global-set-key (kbd "C-M-<left>") 'backward-sexp)
-     (global-set-key (kbd "C-M-<right>") 'forward-sexp)
-
-     (global-set-key (kbd "M-(") 'paredit-wrap-round)
-     (global-set-key (kbd "M-[") 'paredit-wrap-square)
-     (global-set-key (kbd "M-{") 'paredit-wrap-curly)
-
-     (global-set-key (kbd "M-)") 'paredit-close-round-and-newline)
-     (global-set-key (kbd "M-]") 'paredit-close-square-and-newline)
-     (global-set-key (kbd "M-}") 'paredit-close-curly-and-newline)
-
-	 (diminish 'paredit-mode)))
-
-;; Enable `paredit-mode' in the minibuffer, during `eval-expression'.
-;; (defun conditionally-enable-paredit-mode ()
-;;   (if (eq this-command 'eval-expression)
-;;       (paredit-mode 1)))
-
-;; (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
-
-;; making paredit work with delete-selection-mode
-(put 'paredit-forward-delete 'delete-selection 'supersede)
-(put 'paredit-backward-delete 'delete-selection 'supersede)
-(put 'paredit-newline 'delete-selection t)
-
-;; SMARTPARENS
-
-;; Too frustrating are the small differences from paredit
-
-;; (require 'smartparens)
-;; (sp-use-paredit-bindings)
-;; (smartparens-strict-mode)
-
-;; ;; fights with my preferred navigation keys
-;; (dolist (binding (list (kbd "M-<up>") (kbd "M-<down>") (kbd "C-M-<left>") (kbd "C-M-<right>")))
-;;   (define-key smartparens-mode-map binding nil))
-
-;; ;; make it work like paredit
-;; (define-key smartparens-mode-map (kbd "C-k") 'sp-kill-sexp)
-
-;; ;; smartedit all the parens
-;; (dolist (mode '(scheme emacs-lisp lisp clojure clojurescript))
-;;     (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
-;;               'smartparens-mode))
+;; Use smartparens defaults
+(require 'smartparens-config)
+(smartparens-global-mode t)
 
 ;;; ELISP
 
