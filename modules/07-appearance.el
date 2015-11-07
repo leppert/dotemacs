@@ -14,7 +14,14 @@
  ;; general look and feel things
  font-lock-maximum-decoration t
  color-theme-is-global t
- visible-bell t
+
+ ;; Workaround for El Capitan rendering bug:
+ ;; http://stuff-things.net/2015/10/05/emacs-visible-bell-work-around-on-os-x-el-capitan/
+ ;; http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21662
+ ;; visible-bell t ;; previous setting before rendering bug
+ visible-bell nil
+ ring-bell-function 'ignore
+
  truncate-partial-width-windows nil)
 
 ;; Show me empty lines after buffer end

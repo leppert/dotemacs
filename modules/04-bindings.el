@@ -65,7 +65,7 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Bind silver searcher to super shift f
-(global-set-key (kbd "s-F") 'ag)
+(global-set-key (kbd "s-F") 'helm-ag-project-root)
 
 ;; Go ahead and kill the current buffer
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
