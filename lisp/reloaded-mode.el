@@ -44,7 +44,7 @@
 
 (defun reloaded--implements-reloaded-pattern ()
   (not (equal "nil" (nrepl-dict-get
-                     (cider-nrepl-sync-request:eval "(and (resolve 'component/start) (resolve 'component/stop))")
+                     (cider-nrepl-sync-request:eval "(and (resolve 'component/start) (resolve 'component/stop))" "user")
                      "value"))))
 
 (defun reloaded--ensure-implements-reloaded-pattern ()
