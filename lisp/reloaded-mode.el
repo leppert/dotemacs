@@ -4,7 +4,7 @@
   "Execute within the user namespace."
   (cider-ensure-connected)
   (reloaded--ensure-implements-reloaded-pattern)
-  (cider-tooling-eval form (cider-interactive-eval-handler)))
+  (cider-tooling-eval form (cider-interactive-eval-handler) "user"))
 
 (defun reloaded-init ()
   (interactive)
