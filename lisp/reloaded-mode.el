@@ -52,7 +52,7 @@
     (error "This project doesn't implement the Reloaded pattern")))
 
 (defun reloaded--reset-on-save ()
-  (if cider-connected-p 'reloaded-reset))
+  (if (cider-connected-p) (reloaded-reset)))
 
 (defvar reloaded-mode-map
   (let ((map (make-sparse-keymap)))
