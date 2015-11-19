@@ -7,6 +7,9 @@
 ;; magit
 (setq magit-push-always-verify nil)
 
+;; Syntax checking
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 (require 'textmate)
 (textmate-mode)
 

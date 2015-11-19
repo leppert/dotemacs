@@ -165,7 +165,6 @@ Including indent-buffer, which should not be called automatically on save."
 (rvm-use-default)
 
 ;; ruby, using robe
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (add-hook 'ruby-mode-hook 'robe-mode)
 
 ;; Running tests
@@ -231,9 +230,7 @@ Including indent-buffer, which should not be called automatically on save."
   (set (make-local-variable 'tab-width) 2))
 (add-hook 'coffee-mode-hook '(lambda() (coffee-custom)))
 
-(require 'flymake-coffee)
-(add-hook 'coffee-mode-hook 'flymake-coffee-load)
-(setq flymake-coffee-coffeelint-configuration-file (expand-file-name "config/coffeelint.json"))
+(setq flycheck-coffeelintrc (expand-file-name "config/coffeelint.json"))
 
 (add-to-list 'load-path (expand-file-name "lisp/ac-coffee" user-emacs-directory))
 (require 'ac-coffee)
