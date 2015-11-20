@@ -2,7 +2,7 @@
 
 ;; Enable recursive editing in the minibuffer
 ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Recursive-Edit.html
-(setq enable-recursive-minibuffers t)
+;; (setq enable-recursive-minibuffers t)
 
 ;; magit
 (setq magit-push-always-verify nil)
