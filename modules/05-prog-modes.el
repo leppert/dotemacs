@@ -82,6 +82,7 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;; Use smartparens defaults
 (require 'smartparens-config)
+(sp-use-smartparens-bindings)
 (smartparens-global-mode t)
 
 ;;; ELISP
