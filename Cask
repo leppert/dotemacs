@@ -61,6 +61,7 @@
 (depends-on "processing-mode")
 (depends-on "pyvenv")
 (depends-on "rainbow-mode")
+(depends-on "reloaded-mode" :git "https://github.com/leppert/reloaded-mode" :ref "master")
 (depends-on "restclient")
 (depends-on "rinari")
 (depends-on "robe")
