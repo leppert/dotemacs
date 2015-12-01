@@ -84,6 +84,5 @@
 (depends-on "with-editor")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
-
 ;;;pallet-ignore
 (depends-on "reloaded-mode" :git "https://github.com/leppert/reloaded-mode" :ref "master")
