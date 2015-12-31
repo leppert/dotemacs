@@ -16,3 +16,5 @@
 ;; Makes autocomplete easier to read
 (require 'uniquify)
 (setq-default uniquify-buffer-name-style 'forward)
+
+(require 'crux)
