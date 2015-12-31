@@ -129,6 +129,8 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;;; CLOJURE
 
+(setq clojure-defun-style-default-indent t)
+
 (eval-after-load "cider"
   '(progn
      (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
@@ -142,7 +144,17 @@ Including indent-buffer, which should not be called automatically on save."
   '(progn
      (define-key clojure-mode-map (kbd "<s-return>") 'cider-eval-defun-at-point)
      ;; add shift to eval the last expression, rather than the top-level one
-     (define-key clojure-mode-map (kbd "<S-s-return>") 'cider-eval-last-expression)))
+     (define-key clojure-mode-map (kbd "<S-s-return>") 'cider-eval-last-expression)
+     ;; For compojure - https://github.com/weavejester/compojure/wiki/Emacs-indentation
+     (define-clojure-indent
+       (defroutes 'defun)
+       (GET 2)
+       (POST 2)
+       (PUT 2)
+       (DELETE 2)
+       (HEAD 2)
+       (ANY 2)
+       (context 2))))
 
 ;;(require 'nrepl-eval-sexp-fu)
 ;;(setq nrepl-eval-sexp-fu-flash-duration 0.3)
