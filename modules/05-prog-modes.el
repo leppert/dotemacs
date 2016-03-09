@@ -193,6 +193,10 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;;;;;; PYTHON
 
+
+;; Fixes "Symbol's function definition is void: tramp-tramp-file-p"
+(require 'tramp)
+
 (elpy-enable)
 (load "pony-mode.el")
 (define-key pony-minor-mode-map (kbd "C-c C-c") 'pony-test)
@@ -238,9 +242,7 @@ Including indent-buffer, which should not be called automatically on save."
 ;; javascript:(function(){var d=document ;var s=d.createElement('script');s.src='http://localhost:8023/skewer';d.body.appendChild(s);})()
 
 ;;two space tabs in coffee
-(defun coffee-custom ()
-  "coffee-mode-hook"
-  (set (make-local-variable 'tab-width) 2))
+(custom-set-variables '(coffee-tab-width 2))
 (add-hook 'coffee-mode-hook '(lambda() (coffee-custom)))
 
 (setq flycheck-coffeelintrc (expand-file-name "config/coffeelint.json"))
