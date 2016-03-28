@@ -15,14 +15,17 @@
  font-lock-maximum-decoration t
  color-theme-is-global t
 
- ;; Workaround for El Capitan rendering bug:
- ;; http://stuff-things.net/2015/10/05/emacs-visible-bell-work-around-on-os-x-el-capitan/
- ;; http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21662
- ;; visible-bell t ;; previous setting before rendering bug
- visible-bell nil
- ring-bell-function 'ignore
-
  truncate-partial-width-windows nil)
+
+;; Default visible bell is... alarming. Use something more subtle.
+;; via; https://www.emacswiki.org/emacs/AlarmBell#toc8
+(defun modeline-visible-bell ()
+  "Briefly inverts the modeline face (for use as ring-bell-function)"
+  (invert-face 'mode-line)
+  (run-with-timer 0.1 nil 'invert-face 'mode-line))
+
+(setq visible-bell nil
+      ring-bell-function 'modeline-visible-bell)
 
 ;; Show me empty lines after buffer end
 (set-default 'indicate-empty-lines t)
