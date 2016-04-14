@@ -18,8 +18,14 @@ I install emacs on Mac OS X using this
 [homebrew](http://brew.sh/) recipe:
 
 ```bash
-$ brew install emacs --with-cocoa --with-imagemagick
+$ brew install emacs --devel --with-cocoa --with-imagemagick
 ```
+
+The included flags specify:
+
+- `devel`: Emacs 25 instead of 24
+- `with-cocoa`: Produce a full-fledged Mac app
+- `with-imagemagick`: Allow inline image rendering
 
 Next, install [Cask](http://cask.github.io/):
 
