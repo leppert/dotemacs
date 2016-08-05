@@ -88,7 +88,7 @@ Including indent-buffer, which should not be called automatically on save."
 ;;; ELISP
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
 (eval-after-load 'eldoc
   '(diminish 'eldoc-mode))
@@ -133,8 +133,8 @@ Including indent-buffer, which should not be called automatically on save."
 
 (eval-after-load "cider"
   '(progn
-     (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-     (add-hook 'cider-interaction-mode-hook 'cider-turn-on-eldoc-mode)
+     (add-hook 'cider-mode-hook 'eldoc-mode)
+     (add-hook 'cider-interaction-mode-hook 'eldoc-mode)
      (setq cider-repl-print-length 1000)
      (setq cider-repl-use-clojure-font-lock t)
      (setq cider-repl-pop-to-buffer-on-connect nil)))
