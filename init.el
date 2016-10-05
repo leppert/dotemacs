@@ -1,5 +1,7 @@
 ;; -*- emacs-lisp -*-
 
+(package-initialize)
+
 ;; turn off splash screen messages
 (setq inhibit-startup-echo-area-message t
       inhibit-startup-screen t)
