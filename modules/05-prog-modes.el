@@ -177,6 +177,8 @@ Including indent-buffer, which should not be called automatically on save."
 (require 'rvm)
 (rvm-use-default)
 
+(setq flycheck-rubylintrc "ruby-lint.yml")
+
 ;; ruby, using robe
 (add-hook 'ruby-mode-hook 'robe-mode)
 
