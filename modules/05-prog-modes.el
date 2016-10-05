@@ -191,6 +191,26 @@ Including indent-buffer, which should not be called automatically on save."
 
 (require 'minitest)
 (setq minitest-use-spring t)
+
+;; Hacks to fix https://github.com/arthurnn/minitest-emacs/issues/34
+(defun minitest-test-command ()
+   (cond (minitest-use-spring '("spring" "rails" "test"))
+        ((minitest-zeus-p) '("zeus" "test"))
+        (t minitest-default-command)))
+
+(defun minitest-verify-single ()
+  "Run on current file."
+  (interactive)
+  (minitest--file-command-with-line-number))
+
+(defun minitest--file-command-with-line-number (&optional post-command)
+  "Run COMMAND on currently visited file."
+  (let ((file-name (file-relative-name (buffer-file-name) (minitest-project-root)))
+        (line-number (number-to-string (line-number-at-pos))))
+    (if (and file-name line-number)
+        (minitest-run-file (concat file-name ":" line-number) post-command)
+      (error "Buffer is not visiting a file"))))
+
 (define-key minitest-mode-map (kbd "C-c C-c") 'minitest-verify-single)
 
 ;;;;;; PYTHON
