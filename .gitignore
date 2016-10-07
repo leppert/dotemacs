@@ -25,3 +25,4 @@ smex-items
 # Stackoverflow package cache
 .sx
 eshell
+/%backup%~
