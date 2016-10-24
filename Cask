@@ -12,6 +12,7 @@
 (depends-on "cask")
 (depends-on "cask-mode")
 (depends-on "cider")
+(depends-on "cider-eval-sexp-fu")
 (depends-on "circe")
 (depends-on "clojure-mode")
 (depends-on "coffee-mode")
