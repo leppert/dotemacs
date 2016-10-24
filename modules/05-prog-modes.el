@@ -269,9 +269,6 @@ Including indent-buffer, which should not be called automatically on save."
 
 (setq flycheck-coffeelintrc (expand-file-name "config/coffeelint.json"))
 
-(add-to-list 'load-path (expand-file-name "lisp/ac-coffee" user-emacs-directory))
-(require 'ac-coffee)
-
 ;;;;;; PHP
 
 (require 'php-mode)
