@@ -56,12 +56,18 @@ Once this is complete, you should also install the
 $ brew install aspell --with-lang-en
 ```
 
-And
 [The Silver Searcher](https://github.com/ggreer/the_silver_searcher),
 required by [ag](https://github.com/Wilfred/ag.el):
 
 ```bash
 $ brew install ag
+```
+
+And [Planck](https://github.com/mfikes/planck), a super snappy
+ClojureScript REPL:
+
+``` bash
+$ brew install planck
 ```
 
 ## A PRIMER

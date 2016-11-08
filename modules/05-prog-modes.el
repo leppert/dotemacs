@@ -162,6 +162,8 @@ Including indent-buffer, which should not be called automatically on save."
 (require 'cider-eval-sexp-fu)
 (setq cider-eval-sexp-fu-flash-duration 0.2)
 
+(setq inf-clojure-program "planck")
+
 ;;;;;; HASKELL 
 
 ;;;; Haskell
