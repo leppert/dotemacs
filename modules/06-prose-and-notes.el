@@ -1,5 +1,8 @@
 ;; -*- emacs-lisp -*-
 
+(require 'typopunct)
+(typopunct-change-language 'english t)
+
 (require 'markdown-mode)
 
 (add-to-list 'auto-mode-alist
@@ -57,7 +60,9 @@ is displayed in the mode-line."
               (run-with-idle-timer 3 't #'wordcount-update-word-count)))
     (cancel-timer wordcount-timer)))
 
-(add-hook 'markdown-mode-hook (lambda () (wordcount-mode)))
+(add-hook 'markdown-mode-hook (lambda ()
+                                (wordcount-mode)
+                                (typopunct-mode)))
 
 ;; Retain keyboard navigation in org-mode
 (require 'org)
@@ -85,6 +90,8 @@ is displayed in the mode-line."
 
 (define-key org-mode-map (kbd "s->") 'org-metaright)
 (define-key org-mode-map (kbd "s-<") 'org-metaleft)
+
+(add-hook 'org-mode-hook (lambda () (typopunct-mode)))
 
 (require 'org-download)
 ;; http://lists.gnu.org/archive/html/emacs-orgmode/2012-08/msg01388.html

@@ -94,6 +94,7 @@
 (depends-on "tern")
 (depends-on "textmate")
 (depends-on "tuareg")
+(depends-on "typopunct")
 (depends-on "undo-tree")
 (depends-on "visual-regexp")
 (depends-on "vlf")
