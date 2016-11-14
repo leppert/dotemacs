@@ -31,7 +31,7 @@
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 ;;; Use Cask for ELPA-style packages
-(require 'cask "~/.cask/cask.el")
+(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
 (cask-initialize)
 
 ;; Enable pallet-mode so that newly installed
