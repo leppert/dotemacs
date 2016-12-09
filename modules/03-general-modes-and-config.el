@@ -18,3 +18,7 @@
 (setq-default uniquify-buffer-name-style 'forward)
 
 (require 'crux)
+
+(require 'alert)
+(setq alert-default-style 'notifier)
+

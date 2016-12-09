@@ -6,6 +6,7 @@
 (depends-on "ack-and-a-half")
 (depends-on "ag")
 (depends-on "aggressive-indent")
+(depends-on "alert")
 (depends-on "async")
 (depends-on "bundler")
 (depends-on "caml")
