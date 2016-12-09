@@ -139,6 +139,22 @@ Including indent-buffer, which should not be called automatically on save."
      (setq cider-repl-use-clojure-font-lock t)
      (setq cider-repl-pop-to-buffer-on-connect nil)))
 
+(setq cider-cljs-lein-repl
+      "(do (require 'cljs.repl.node) (cemerick.piggieback/cljs-repl (cljs.repl.node/repl-env)))")
+
+;; via https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl#optional-emacscider-keybinding
+(defun cider-figwheel-repl ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(require 'figwheel-sidecar.repl-api)
+             (figwheel-sidecar.repl-api/start-figwheel!) ; idempotent
+             (figwheel-sidecar.repl-api/cljs-repl)")
+    (cider-repl-return)))
+
+(global-set-key (kbd "C-c C-f") #'cider-figwheel-repl)
+
 ;; I like this keybinding from Lighttable
 (eval-after-load 'clojure-mode
   '(progn
