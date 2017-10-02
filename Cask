@@ -48,7 +48,6 @@
 (depends-on "highlight-indentation")
 (depends-on "hydra")
 (depends-on "ido-completing-read+")
-(depends-on "ido-ubiquitous")
 (depends-on "impatient-mode")
 (depends-on "inf-clojure")
 (depends-on "inf-ruby")
