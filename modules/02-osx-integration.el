@@ -89,6 +89,7 @@ When using Homebrew, install it using \"brew install trash\"."
   (global-set-key [(super l)] 'goto-line)
   (global-set-key [(super w)]
                   (lambda () (interactive) (delete-window)))
+  (global-set-key [(super q)] 'save-buffers-kill-emacs)
   (global-set-key [(super z)] 'undo)
 
   ;; turn off super disturbing visible bell
