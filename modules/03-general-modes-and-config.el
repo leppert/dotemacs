@@ -10,8 +10,15 @@
 ;; Syntax checking
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(require 'textmate)
-(textmate-mode)
+;; HACK - Textmate mode checks for the 'ns version of emacs
+;; but not the railwaycat 'mac version
+(let ((imitate-ns (and (featurep 'mac)
+                       (not (featurep 'ns)))))
+  (if imitate-ns (provide 'ns))
+  (require 'textmate)
+  (textmate-mode)
+  ;; Clean up our HACK
+  (if imitate-ns (setq features (delete 'ns features))))
 
 ;; Makes autocomplete easier to read
 (require 'uniquify)
@@ -22,3 +29,7 @@
 (require 'alert)
 (setq alert-default-style 'notifier)
 
+(add-to-list 'load-path "~/github/receiver")
+(require 'receiver)
+(add-hook 'receiver-request-received-hook
+          (lambda () (alert "New request received.")))
