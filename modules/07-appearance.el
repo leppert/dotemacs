@@ -9,7 +9,10 @@
  column-number-mode t
 
  ;; speed up screen re-paint on local sessions
- redisplay-dont-pause t 
+ redisplay-dont-pause t
+
+ ;; use smooth scrolling
+ pixel-scroll-mode t
 
  ;; general look and feel things
  font-lock-maximum-decoration t
@@ -41,8 +44,12 @@
 (setq-default line-spacing 3)
 
 ;; color emoji support
-;; via: http://stackoverflow.com/a/22656515/313561
-(set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
+;; (require 'emojify)
+;; (add-hook 'after-init-hook #'global-emojify-mode)
+;; (setq-default emojify-display-style 'unicode)
+  (set-fontset-font "fontset-default"
+                    '(#x1F600 . #x1F64F)
+                    (font-spec :name "Apple Color Emoji") nil 'prepend)
 
 ;; unblinking bar-style cursor
 (blink-cursor-mode 0)
