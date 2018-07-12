@@ -315,3 +315,9 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;; https://mustache.github.io/
 (require 'mustache-mode)
+
+
+;;;;;; ARDUINO
+
+(require 'arduino-mode)
+(setq auto-mode-alist (cons '("\\.\\(pde\\|ino\\)$" . arduino-mode) auto-mode-alist))
