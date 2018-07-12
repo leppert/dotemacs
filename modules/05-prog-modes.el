@@ -295,8 +295,10 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;;;;;; CSS & COMPILES TO CSS
 
+(setq-default css-indent-offset 2)
+
 (require 'rainbow-mode)
-(add-to-list 'auto-mode-alist '("\\.s?css$" . rainbow-mode)) 
+(add-hook 'css-mode-hook 'rainbow-mode)
 
 ;; SCSS
 (require 'scss-mode)
