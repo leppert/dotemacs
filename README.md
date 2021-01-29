@@ -14,7 +14,7 @@ starting point.
 If you would like to test out this configuration, clone this repo and
 place it in your home directory as the directory `.emacs.d`.
 
-I install emacs on Mac OS X using this
+I install emacs on MacOS using this
 [homebrew](http://brew.sh/) recipe:
 
 ```bash
@@ -26,27 +26,6 @@ The included flags specify:
 - `devel`: Emacs 25 instead of 24
 - `with-cocoa`: Produce a full-fledged Mac app
 - `with-imagemagick`: Allow inline image rendering
-
-Next, install [Cask](http://cask.github.io/):
-
-```bash
-$ brew install cask
-```
-
-After installation, create a symlink pointing from your user directory
-to the cask folder installed by Homebrew:
-
-```bash
-$ ln -s /usr/local/Cellar/cask/`cask --version` ~/.cask
-```
-
-Now change to your `.emacs.d` directory and use `cask` to install the
-package dependencies:
-
-```bash
-$ cd ~/.emacs.d
-$ cask install
-```
 
 Once this is complete, you should also install the
 [Aspell](http://aspell.net/) spell checker, required by

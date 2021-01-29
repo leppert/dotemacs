@@ -1,20 +1,18 @@
 ;; -*- emacs-lisp -*-
 
-(package-initialize)
-
 ;; turn off splash screen messages
 (setq inhibit-startup-echo-area-message t
       inhibit-startup-screen t)
 
-;; no window chrome!
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(menu-bar-mode nil)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
-
-;; I have loads of RAM, don't start GC until I've used a decent chunk
-(setq gc-cons-threshold 20000000)
 
 ;;; utf-8 all the time
 (setq locale-coding-system 'utf-8)
@@ -27,18 +25,44 @@
 ;; I'll be sending files from the command line
 (server-start)
 
+;; straight.el setup
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; use straight by default
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+
 ;;; local lisp packages for this configuration live here
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
-
-;;; Use Cask for ELPA-style packages
-(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
-(cask-initialize)
-
-;; Enable pallet-mode so that newly installed
-;; packages are written to the Cask file
-(require 'pallet)
-(pallet-mode t)
 
 ;;; Like /etc/rc.d, all startup filenames begin with a number and get
 ;;; loaded in numerical order.
 (mapc #'load-file (directory-files (concat user-emacs-directory "modules") t "[0-9]*.el"))
+
+;; staight.el - create a version file if it does not yet exist
+(when (not (file-exists-p (expand-file-name "straight/versions/default.el" straight-base-dir)))
+  (straight-freeze-versions))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(cider use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

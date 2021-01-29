@@ -26,10 +26,12 @@
 (define-key global-map (kbd "<M-kp-delete>") 'paredit-forward-kill-word)
 
 ;; undo-tree-mode aliased to command+z/shift+command+z
-(require 'undo-tree)
-(global-undo-tree-mode 1)
-(global-set-key (kbd "s-z") 'undo)           
-(global-set-key (kbd "s-Z") 'undo-tree-redo)
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :config
+  (global-undo-tree-mode 1)
+  (global-set-key (kbd "s-z") 'undo)           
+  (global-set-key (kbd "s-Z") 'undo-tree-redo))
 
 ;; the fantastic undo-tree-visualize on C-s-z
 (global-set-key [C-s-268632090] 'undo-tree-visualize)
@@ -38,9 +40,9 @@
 (global-set-key (kbd "s-f") 'isearch-forward-regexp)
 
 ;; command-r, forward-replace
-(require 'visual-regexp)
-(global-set-key (kbd "s-r") 'vr/replace)
-(global-set-key [8388690] 'vr/query-replace) ; s-R
+(use-package visual-regexp
+  :config (global-set-key (kbd "s-r") 'vr/replace)
+  (global-set-key [8388690] 'vr/query-replace)) ; s-R
 
 ;; make M-up and M-down the same as C-up and C-down because the former
 ;; is how it's bound in OSX
@@ -54,8 +56,9 @@
 (global-set-key (kbd "s-w") 'kill-this-buffer)
 
 ;; I never want to see the OS file finder
-(require 'find-file-in-project)
-(global-set-key (kbd "s-o") 'find-file-in-project)
+(use-package find-file-in-project
+  :config
+  (global-set-key (kbd "s-o") 'find-file-in-project))
 
 ;; In dired, move deletions to trash
 ;; via: http://emacswiki.org/emacs/SystemTrash#toc5

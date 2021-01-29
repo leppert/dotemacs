@@ -81,17 +81,20 @@ Including indent-buffer, which should not be called automatically on save."
 ;;; SMARTPARENS
 
 ;; Use smartparens defaults
-(require 'smartparens-config)
-(sp-use-smartparens-bindings)
-(smartparens-global-mode t)
+(use-package smartparens
+  :config
+  (require 'smartparens-config)
+  (sp-use-smartparens-bindings)
+  (smartparens-global-mode t))
 
 ;;; ELISP
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
-(eval-after-load 'eldoc
-  '(diminish 'eldoc-mode))
+(use-package eldoc
+  :straight nil ;; builtin
+  :diminish eldoc-mode)
 
 ;; (defun elisp-popup-doc ()
 ;;   "Use auto-complete's popup support to look up docs in emacs-lisp buffers."
@@ -117,27 +120,27 @@ Including indent-buffer, which should not be called automatically on save."
            (insert (current-kill 0)))))
 
 ;;; SCHEME
-(require 'geiser)
-(setq geiser-active-implementations '(racket))
-(add-hook 'geiser-mode-hook
-          '(lambda ()
-             (define-key geiser-mode-map (kbd "C-c d") 'geiser-doc-symbol-at-point)
-             (define-key geiser-mode-map (kbd "<s-return>") 'geiser-eval-definition)
-             (define-key geiser-mode-map (kbd "<S-s-return>") 'geiser-eval-last-sexp)))
-
-;;; XXX COMMON LISP moved to private config for the moment
+(use-package geiser
+  :custom (geiser-active-implementations '(racket))
+  :config
+  (add-hook 'geiser-mode-hook
+            '(lambda ()
+               (define-key geiser-mode-map (kbd "C-c d") 'geiser-doc-symbol-at-point)
+               (define-key geiser-mode-map (kbd "<s-return>") 'geiser-eval-definition)
+               (define-key geiser-mode-map (kbd "<S-s-return>") 'geiser-eval-last-sexp))))
 
 ;;; CLOJURE
 
 (setq clojure-defun-style-default-indent t)
 
-(eval-after-load "cider"
-  '(progn
-     (add-hook 'cider-mode-hook 'eldoc-mode)
-     (add-hook 'cider-interaction-mode-hook 'eldoc-mode)
-     (setq cider-repl-print-length 1000)
-     (setq cider-repl-use-clojure-font-lock t)
-     (setq cider-repl-pop-to-buffer-on-connect nil)))
+(use-package cider
+  :custom
+  (cider-repl-print-length 1000)
+  (cider-repl-use-clojure-font-lock t)
+  (cider-repl-pop-to-buffer-on-connect nil)
+  :config (progn
+            (add-hook 'cider-mode-hook 'eldoc-mode)
+            (add-hook 'cider-interaction-mode-hook 'eldoc-mode)))
 
 (setq cider-cljs-lein-repl
       "(do (require 'cljs.repl.node) (cemerick.piggieback/cljs-repl (cljs.repl.node/repl-env)))")
@@ -175,8 +178,8 @@ Including indent-buffer, which should not be called automatically on save."
 ;;(require 'nrepl-eval-sexp-fu)
 ;;(setq nrepl-eval-sexp-fu-flash-duration 0.3)
 
-(require 'cider-eval-sexp-fu)
-(setq cider-eval-sexp-fu-flash-duration 0.2)
+(use-package cider-eval-sexp-fu
+  :custom (cider-eval-sexp-fu-flash-duration 0.2))
 
 (setq inf-clojure-program "planck")
 
@@ -192,23 +195,25 @@ Including indent-buffer, which should not be called automatically on save."
 ;;;;;; RUBY
 
 ;; RVM https://rvm.io
-(require 'rvm)
-(rvm-use-default)
+(use-package rvm
+  :config (rvm-use-default))
 
 (setq flycheck-rubylintrc "ruby-lint.yml")
 
 ;; ruby, using robe
 (add-hook 'ruby-mode-hook 'robe-mode)
 
+(use-package bundler)
+
 ;; Running tests
-(require 'rinari)
-(define-key rinari-minor-mode-map (kbd "C-c C-c") 'rinari-test)
+(use-package rinari
+  :config (define-key rinari-minor-mode-map (kbd "C-c C-c") 'rinari-test))
 
-(require 'rspec-mode)
-(define-key rspec-mode-map (kbd "C-c C-c") 'rspec-verify-single)
+(use-package rspec-mode
+  :config (define-key rspec-mode-map (kbd "C-c C-c") 'rspec-verify-single))
 
-(require 'minitest)
-(setq minitest-use-spring t)
+(use-package minitest
+  :custom (minitest-use-spring t))
 
 ;; Hacks to fix https://github.com/arthurnn/minitest-emacs/issues/34
 (defun minitest-test-command ()
@@ -235,36 +240,27 @@ Including indent-buffer, which should not be called automatically on save."
 
 
 ;; Fixes "Symbol's function definition is void: tramp-tramp-file-p"
-(require 'tramp)
+(use-package tramp)
 
-(elpy-enable)
-(load "pony-mode.el")
-(define-key pony-minor-mode-map (kbd "C-c C-c") 'pony-test)
+(use-package elpy
+  :init (elpy-enable))
+;;(define-key pony-minor-mode-map (kbd "C-c C-c") 'pony-test)
 
 ;;;;;; JAVASCRIPT/COFFEESCRIPT
 
 ;; js2-mode
-(require 'js2-mode)
-(setq-default js2-auto-indent-p t)
-(setq-default js2-basic-offset 2)
-(setq-default js2-global-externs '("module" "require" "jQuery" "$" "_" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
-;; http://blog.binchen.org/posts/why-emacs-is-better-editor.html
-(add-hook 'js2-mode-hook 'js2-imenu-extras-mode)
-
-;; tern
-(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-
-(require 'company-tern)
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-tern))
+(use-package js2-mode
+  :custom
+  (js2-auto-indent-p t)
+  (js2-basic-offset 2)
+  (js2-global-externs '("module" "require" "jQuery" "$" "_" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  ;; http://blog.binchen.org/posts/why-emacs-is-better-editor.html
+  (add-hook 'js2-mode-hook 'js2-imenu-extras-mode))
 
 ;; skewer mode for browser mind control
-(require 'skewer-mode)
-(require 'skewer-repl)
-(require 'skewer-html)
-(require 'skewer-css)
+(use-package skewer-mode)
 
 ;; configure all of mode hooks (previous default)
 (skewer-setup)
@@ -289,22 +285,23 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;;;;;; PHP
 
-(require 'php-mode)
-(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+(use-package php-mode
+  :config (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode)))
 
 
 ;;;;;; CSS & COMPILES TO CSS
 
 (setq-default css-indent-offset 2)
 
-(require 'rainbow-mode)
-(add-hook 'css-mode-hook 'rainbow-mode)
+(use-package rainbow-mode
+  :config (add-hook 'css-mode-hook 'rainbow-mode))
 
 ;; SCSS
-(require 'scss-mode)
-(autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
-(setq scss-compile-at-save nil)
+(use-package scss-mode
+  :custom (scss-compile-at-save nil)
+  :config
+  (autoload 'scss-mode "scss-mode")
+  (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode)))
 
 ;;;;;; HTML & TEMPLATING
 
@@ -316,10 +313,4 @@ Including indent-buffer, which should not be called automatically on save."
 (add-hook 'web-mode-hook  'web-mode-customizations)
 
 ;; https://mustache.github.io/
-(require 'mustache-mode)
-
-
-;;;;;; ARDUINO
-
-(require 'arduino-mode)
-(setq auto-mode-alist (cons '("\\.\\(pde\\|ino\\)$" . arduino-mode) auto-mode-alist))
+(use-package mustache-mode)

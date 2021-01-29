@@ -19,10 +19,12 @@
       ido-max-prospects 10)
 
 ;; smex is "smart M-x"
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(setq smex-key-advice-ignore-menu-bar t)
+(use-package smex
+  :custom (smex-key-advice-ignore-menu-bar t)
+  :config
+  (smex-initialize)
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands))
 
 ;; nicer buffer list
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -48,14 +50,15 @@
 
 ;; expand-region is super handy! I like having expand- and contract-
 ;; side by side within easy reach.
-(require 'expand-region)
-(global-set-key (kbd "s-1") 'er/expand-region)
-(global-set-key (kbd "s-2") 'er/contract-region)
+(use-package expand-region
+  :config
+  (global-set-key (kbd "s-1") 'er/expand-region)
+  (global-set-key (kbd "s-2") 'er/contract-region))
 
 ;; I can't get today's kids interested in set-mark, so I've repurposed
 ;; C-SPC for ace-jump-mode.
-(require 'ace-jump-mode)
-(global-set-key (kbd "C-SPC") 'ace-jump-mode)
+(use-package ace-jump-mode
+  :config (global-set-key (kbd "C-SPC") 'ace-jump-mode))
 
 ;; Multiple Cursors
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -64,7 +67,13 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Bind silver searcher to super shift f
-(global-set-key (kbd "s-F") 'helm-ag-project-root)
+(use-package helm-ag
+  :config (global-set-key (kbd "s-F") 'helm-ag-project-root))
+
+(use-package visual-regexp-steroids
+  :config
+  (define-key global-map (kbd "C-c r") 'vr/replace)
+  (define-key global-map (kbd "C-c q") 'vr/query-replace))
 
 ;; Go ahead and kill the current buffer
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
@@ -84,3 +93,7 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+;; via: https://github.com/magnars/.emacs.d/blob/2d38d3470eaa1ef9e14ce5720e1690dee54330ed/settings/key-bindings.el#L165-L166
+(global-set-key (kbd "C-x -") 'toggle-window-split)
+(global-set-key (kbd "C-x C--") 'rotate-windows)

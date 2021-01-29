@@ -60,21 +60,16 @@
 (mapc (lambda (m) (add-hook m (lambda () (push '("fn" . ?ƒ) prettify-symbols-alist))))
      '(clojure-mode-hook clojurescript-mode-hook))
 
-;; diminish global minor modes
-(eval-after-load 'undo-tree
-  '(diminish 'undo-tree-mode))
-
-;; locally hacked version of noctilux, turning into something else
-(add-to-list 'load-path (concat user-emacs-directory "eigengrau/"))
-(require 'eigengrau-theme)
+(use-package monokai-pro-theme
+  :config (load-theme 'monokai-pro t))
 
 ;; powerline gives a much aesthetically improved mode line
-(require 'powerline)
-(powerline-center-theme)
+(use-package powerline
+  :init (powerline-center-theme))
 
 ;; dim the parentheses
-(require 'parenface-plus)
-(set-face-foreground 'paren-face "#666")
+;;(require 'parenface-plus)
+;;(set-face-foreground 'paren-face "#666")
 
 ;; for the silver surfer highlighting
 (setq ag-highlight-search t)
@@ -88,3 +83,8 @@
      `(company-tooltip-common ((t (:inherit font-lock-constant-face))))
      `(company-tooltip-common-selection ((t (:inherit font-lock-keyword-face))))
      `(company-tooltip-selection ((t (:inherit font-lock-keyword-face))))))
+
+;; disable the mmm-mode bg color that delineates vue-mode template sections
+(add-hook 'mmm-mode-hook
+          (lambda ()
+            (set-face-background 'mmm-default-submode-face nil)))
