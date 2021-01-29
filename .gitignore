@@ -1,5 +1,6 @@
 /straight/*
 !/straight/versions
+transient
 .places
 ac-comphist.dat
 auto-save-list

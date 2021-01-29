@@ -50,9 +50,8 @@
 ;;; loaded in numerical order.
 (mapc #'load-file (directory-files (concat user-emacs-directory "modules") t "[0-9]*.el"))
 
-;; staight.el - create a version file if it does not yet exist
-(when (not (file-exists-p (expand-file-name "straight/versions/default.el" straight-base-dir)))
-  (straight-freeze-versions))
+;; staight.el - update the version file if needed
+(straight-freeze-versions)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
