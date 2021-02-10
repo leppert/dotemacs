@@ -13,16 +13,15 @@
   :config (global-flycheck-mode))
 
 (use-package textmate
-  :config (textmate-mode))
-;; HACK - Textmate mode checks for the 'ns version of emacs
-;; but not the railwaycat 'mac version
-;;(let ((imitate-ns (and (featurep 'mac)
-;;                       (not (featurep 'ns)))))
-;;  (if imitate-ns (provide 'ns))
-;;  (require 'textmate)
-;;  (textmate-mode)
-;;  ;; Clean up our HACK
-;;  (if imitate-ns (setq features (delete 'ns features))))
+  :init
+  ;; HACK - Textmate mode checks for the 'ns version of emacs
+  ;; but not the railwaycat 'mac version
+  (let ((imitate-ns (and (featurep 'mac)
+                         (not (featurep 'ns)))))
+    (if imitate-ns (provide 'ns))
+    (textmate-mode)
+    ;; Clean up our HACK
+    (if imitate-ns (setq features (delete 'ns features)))))
 
 ;; Makes autocomplete easier to read
 (use-package uniquify
