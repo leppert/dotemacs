@@ -314,3 +314,7 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;; https://mustache.github.io/
 (use-package mustache-mode)
+
+(use-package vue-mode)
+
+(use-package tide)

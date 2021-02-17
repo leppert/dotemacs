@@ -4,6 +4,9 @@
 ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Recursive-Edit.html
 ;; (setq enable-recursive-minibuffers t)
 
+;; Overwrite selected text when typing
+(delete-selection-mode t)
+
 ;; magit
 (use-package magit
   :custom (magit-push-always-verify nil))
