@@ -317,6 +317,11 @@ Including indent-buffer, which should not be called automatically on save."
 
 (use-package vue-mode)
 
+(use-package typescript-mode
+  :hook (typescript-mode . setup-typescript-mode)
+  :config (defun setup-typescript-mode ()
+            (setq typescript-indent-level 2)))
+
 (use-package tide
   :hook (tide-mode . setup-tide-mode)
   :config
@@ -330,11 +335,7 @@ Including indent-buffer, which should not be called automatically on save."
     ;; company is an optional dependency. You have to
     ;; install it separately via package-install
     ;; `M-x package-install [ret] company`
-    (company-mode +1)))
-
-(use-package typescript-mode
-  :hook (typescript-mode . setup-typescript-mode)
-  :config (defun setup-typescript-mode ()
-            ;; https://github.com/ananthakumaran/tide/issues/229#issuecomment-357379743
-            (setq typescript-indent-level
-                  (or (plist-get (tide-tsfmt-options) ':indentSize) 2))))
+    (company-mode +1)
+    ;; https://github.com/ananthakumaran/tide/issues/229#issuecomment-357379743
+    (setq typescript-indent-level
+          (or (plist-get (tide-tsfmt-options) ':indentSize) 2))))
