@@ -89,8 +89,11 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;;; ELISP
 
-(add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+(use-package elisp-slime-nav
+  :straight (:host github :repo "purcell/elisp-slime-nav" :branch "master")
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
+  (add-hook 'emacs-lisp-mode-hook 'eldoc-mode))
 
 (use-package eldoc
   :straight nil ;; builtin
@@ -339,3 +342,7 @@ Including indent-buffer, which should not be called automatically on save."
     ;; https://github.com/ananthakumaran/tide/issues/229#issuecomment-357379743
     (setq typescript-indent-level
           (or (plist-get (tide-tsfmt-options) ':indentSize) 2))))
+
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))

@@ -11,6 +11,7 @@
  ("crux" . "ba4a1f38eee0ae7597f67a1424bbf5c0c09473bf")
  ("dash.el" . "926eb0b9fcce710c2db35d1c86db9b60d0080e6a")
  ("edit-indirect" . "bdc8f542fe8430ba55f9a24a7910639d4c434422")
+ ("elisp-slime-nav" . "8588d80d414aee1fafce5b9da0e913612ee0bcdd")
  ("elnode" . "29ef0f51a65a24fca7fdcdb4140d2e4556e4bb29")
  ("elpy" . "4032c7251eb2d74ec8a301a3988b62b7a0f00932")
  ("elwikicreole" . "7d5cffe93857f6c75ca09ac79c0e47b8d4410e53")
@@ -82,5 +83,6 @@
  ("vue-html-mode" . "1514939804bad558584feeb6298b38d22eadf64e")
  ("vue-mode" . "031edd1f97db6e7d8d6c295c0e6d58dd128b9e71")
  ("with-editor" . "b439749da110af83aea40e79dd2a8c57427bc28a")
+ ("yaml-mode" . "fc5e1c58f94472944c4aa838f00f6adcac6fa992")
  ("yasnippet" . "5cbdbf0d2015540c59ed8ee0fcf4788effdf75b6"))
 :beta
