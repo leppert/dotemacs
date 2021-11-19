@@ -241,10 +241,6 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;;;;;; PYTHON
 
-
-;; Fixes "Symbol's function definition is void: tramp-tramp-file-p"
-(use-package tramp)
-
 (use-package elpy
   :init (elpy-enable))
 ;;(define-key pony-minor-mode-map (kbd "C-c C-c") 'pony-test)

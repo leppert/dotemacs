@@ -73,7 +73,6 @@
  ("straight.el" . "2d407bccd9378f1d5218f8ba2ae85c6be73fbaf1")
  ("textmate.el" . "350918b070148f0ace6d9d3cd4ebcaf15c1a8781")
  ("tide" . "e622d4d879d8b1de2517962b243146ec18b6cfff")
- ("tramp" . "531bbe0cf1b79bc942fe3cd41a73d8babcdbe24f")
  ("transient" . "8ad5fb83c458801816fc2f888c43f6baf74b5803")
  ("typescript.el" . "1043025d42602d560949955410d3afa2562130ee")
  ("undo-tree" . "e326c6135e62f5fe8536528d3acd5e798f847407")
