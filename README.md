@@ -1,12 +1,8 @@
 ## WHAT?
 
-This is my rifle. There are many like it, but this one is mine. It
-is my life. I must master it as I must master my life. Without me my
-rifle is useless.
-
-This particular model of rifle has largely been cribbed from
+This configuration has largely been cribbed from
 [Jack Rusher's](https://github.com/jackrusher/dotemacs). If you're
-looking to build your own rifle, I recommend using Jack's as a
+looking to build your own, I recommend using Jack's as a
 starting point.
 
 ## INSTALLATION
@@ -18,14 +14,15 @@ I install emacs on MacOS using this
 [homebrew](http://brew.sh/) recipe:
 
 ```bash
-$ brew install emacs --devel --with-cocoa --with-imagemagick
+$ brew tap railwaycat/emacsmacport
+$ brew install emacs-mac --with-imagemagick --with-modern-icon --with-native-comp --with-mac-metal
 ```
 
 The included flags specify:
 
-- `devel`: Emacs 25 instead of 24
-- `with-cocoa`: Produce a full-fledged Mac app
+- `with-native-comp`: Required for compiling some packages
 - `with-imagemagick`: Allow inline image rendering
+- `with-mac-metal`: Experimental text rendering
 
 Once this is complete, you should also install the
 [Aspell](http://aspell.net/) spell checker, required by
