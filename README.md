@@ -24,6 +24,12 @@ The included flags specify:
 - `with-imagemagick`: Allow inline image rendering
 - `with-mac-metal`: Experimental text rendering
 
+Now symlink the binary into usr/local so it can be found by DOOM:
+
+``` bash
+$ ln -s /usr/local/Cellar/emacs-mac/emacs-28.1-mac-9.0/bin/emacs-28.1 /usr/local/bin/emacs
+```
+
 Once this is complete, you should also install the
 [Aspell](http://aspell.net/) spell checker, required by
 [Flyspell](http://www.emacswiki.org/emacs/FlySpell):
