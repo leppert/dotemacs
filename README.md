@@ -15,7 +15,7 @@ I install emacs on MacOS using this
 
 ```bash
 $ brew tap railwaycat/emacsmacport
-$ brew install emacs-mac --with-imagemagick --with-modern-icon --with-native-comp --with-mac-metal
+$ brew install emacs-mac --with-imagemagick --with-modern-icon --with-native-comp --with-mac-metal --with-xwidgets
 ```
 
 The included flags specify:
@@ -23,6 +23,7 @@ The included flags specify:
 - `with-native-comp`: Required for compiling some packages
 - `with-imagemagick`: Allow inline image rendering
 - `with-mac-metal`: Experimental text rendering
+-  with-xwidgets : Safari within Emacs
 
 Now symlink the binary into usr/local so it can be found by DOOM:
 
